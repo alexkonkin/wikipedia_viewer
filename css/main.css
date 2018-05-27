@@ -12,7 +12,8 @@ html,body{
 }
 
 .container {
-    height: fit-content;
+    /*height: fit-content;*/
+    display: table;
 }
 
 .container-data {
