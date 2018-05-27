@@ -2,3 +2,7 @@
     border: dashed;
     border-width: thin;
 }
+
+html,body{
+    height:98%;
+}
