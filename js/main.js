@@ -50,7 +50,56 @@ WikiRequester.prototype.getPage = function(aSearch){
         },
         success: function(data){
            console.log("success");
-           console.log(data);
+            console.log(data.query.pages);
+            $.each( data.query.pages, function( key, value ) {
+                $("#data").append("<div class='container'>" +
+                    "<a class='container-data' href='https://en.wikipedia.org/?curid="+ key +"' target='_blank'>"+
+                    "<h4 class=''>"+ value.title +"</h4>" +
+                    "<p class='lead'>"+value.extract+ "</p>" +
+                    "</div>");
+            });
+        },
+        error: function(data){
+            console.log("error");
+            console.log(data);
+        },
+    });
+}
+
+WikiRequester.prototype.getRandom = function(){
+    var self = this;
+
+    $.ajax({
+        url: this.url,
+        data: {
+            "action" : "query",
+            "generator" : "random",
+            "format": "json",
+            "gsrnamespace" : 0,
+            "gsrlimit" : 1,
+            "prop" : "pageimages|extracts",
+            "pilimit" : "max",
+            "exintro" : true,
+            "explaintext" : true ,
+            "exsentences" : 1,
+            "exlimit" : "max",
+            "origin" : "*"
+        },
+        dataType: 'json',
+        async: true,
+        accept: {
+            json: "application/json"
+        },
+        success: function(data){
+            console.log("success");
+            console.log(data.query.pages);
+            $.each( data.query.pages, function( key, value ) {
+                $("#data").append("<div class='container'>" +
+                    "<a class='container-data' href='https://en.wikipedia.org/?curid="+ key +"' target='_blank'>"+
+                    "<h4 class=''>"+ value.title +"</h4>" +
+                    "<p class='lead'>"+value.extract+ "</p>" +
+                    "</div>");
+            });
         },
         error: function(data){
             console.log("error");
@@ -60,9 +109,14 @@ WikiRequester.prototype.getPage = function(aSearch){
 }
 
 function search(){
-
     var wr = new WikiRequester();
-    wr.getPage($("#search").val());
+    $("#data").empty();
+    if($("#search").val() != "")
+        wr.getPage($("#search").val());
+}
 
-    //console.log($("#search").val());
+function random(){
+    var wr = new WikiRequester();
+    $("#data").empty();
+    wr.getRandom();
 }

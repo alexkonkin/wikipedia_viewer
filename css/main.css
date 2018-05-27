@@ -6,3 +6,44 @@
 html,body{
     height:98%;
 }
+
+#data {
+    overflow-y: auto;
+}
+
+.container {
+    height: fit-content;
+}
+
+.container-data {
+    text-decoration: none;
+    color: black;
+}
+
+.container-data:link {
+    text-decoration: none;
+    color: black;
+}
+
+.container-data:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.container-data:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.container:hover {
+    text-decoration: none;
+    color: black;
+    border-left: solid;
+    border-width: thick;
+    border-color: #2f4f90;
+}
+
+.container-data:active {
+    text-decoration: none;
+    color: black;
+}
